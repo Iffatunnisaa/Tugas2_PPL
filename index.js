@@ -35,3 +35,10 @@ function listItems() {
     console.log('========================================\n');
 }
 
+// Menambahkan item baru
+function addItem(name, genre, year) {
+    const data = loadData();
+    data.push({ name, genre, year });
+    saveData(data);
+    console.log('\n✅ Item berhasil ditambahkan!\n');
+}
