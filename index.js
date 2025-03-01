@@ -18,3 +18,20 @@ function loadData() {
 function saveData(data) {
     fs.writeFileSync(filePath, JSON.stringify(data, null, 2), 'utf8');
 }
+
+// Menampilkan daftar item
+function listItems() {
+    const data = loadData();
+    console.log('\n========================================');
+    console.log('           📚 DAFTAR ITEM 📚           ');
+    console.log('========================================');
+    if (data.length === 0) {
+        console.log('❌ Tidak ada item dalam database.');
+    } else {
+        data.forEach((item, index) => {
+            console.log(` ${index + 1}. ${item.name} | ${item.genre} | ${item.year}`);
+        });
+    }
+    console.log('========================================\n');
+}
+
