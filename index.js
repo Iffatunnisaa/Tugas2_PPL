@@ -42,3 +42,17 @@ function addItem(name, genre, year) {
     saveData(data);
     console.log('\n✅ Item berhasil ditambahkan!\n');
 }
+
+// Melihat detail 1 item
+function viewItem(index) {
+    const data = loadData();
+    console.log('\n========================================');
+    if (index >= 0 && index < data.length) {
+        console.log(` 📖 Nama Buku : ${data[index].name}`);
+        console.log(` 🎭 Genre Buku : ${data[index].genre}`);
+        console.log(` 👤 Pengarang : ${data[index].year}`);
+    } else {
+        console.log('❌ Item tidak ditemukan!');
+    }
+    console.log('========================================\n');
+}
