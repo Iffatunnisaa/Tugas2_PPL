@@ -76,3 +76,36 @@ function showMenu() {
                 viewItem(parseInt(num) - 1);
                 showMenu();
             });
+
+        } else if (answer === '4') {
+            rl.question('✏  Masukkan nomor item yang akan diupdate: ', (num) => {
+                rl.question('📖 Masukkan judul baru: ', (newName) => {
+                    rl.question('🎭 Masukkan genre baru: ', (newGenre) => {
+                        rl.question('👤 Masukkan nama pengarang baru: ', (newYear) => {
+                            updateItem(parseInt(num) - 1, newName, newGenre, newYear);
+                            showMenu();
+                        });
+                    });
+                });
+            });
+        } else if (answer === '5') {
+            rl.question('🗑  Masukkan nomor item yang akan dihapus: ', (num) => {
+                deleteItem(parseInt(num) - 1);
+                showMenu();
+            });
+        } else if (answer === '6') {
+            console.log('\n👋 Terima Kasih Telah Menggunakan Database Zein Book!\n');
+            rl.close();
+        } else {
+            console.log('\n❌ Pilihan tidak valid!\n');
+            showMenu();
+        }
+    });
+}
+
+// Tampilan awal hanya muncul sekali
+console.log('\n==================================================');
+console.log('    🎉 SELAMAT DATANG DI DATABASE ZEIN BOOK 🎉');
+console.log('==================================================');
+
+showMenu();
