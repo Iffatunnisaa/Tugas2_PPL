@@ -68,3 +68,15 @@ function updateItem(index, newName, newGenre, newYear) {
         console.log('\n❌ Item tidak ditemukan!\n');
     }
 }
+
+// Menghapus item
+function deleteItem(index) {
+    const data = loadData();
+    if (index >= 0 && index < data.length) {
+        data.splice(index, 1);
+        saveData(data);
+        console.log('\n🗑️  Item berhasil dihapus!\n');
+    } else {
+        console.log('\n❌ Item tidak ditemukan!\n');
+    }
+}
