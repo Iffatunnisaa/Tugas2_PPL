@@ -56,3 +56,15 @@ function viewItem(index) {
     }
     console.log('========================================\n');
 }
+
+// Mengupdate item
+function updateItem(index, newName, newGenre, newYear) {
+    const data = loadData();
+    if (index >= 0 && index < data.length) {
+        data[index] = { name: newName, genre: newGenre, year: newYear };
+        saveData(data);
+        console.log('\n✅ Item berhasil diperbarui!\n');
+    } else {
+        console.log('\n❌ Item tidak ditemukan!\n');
+    }
+}
