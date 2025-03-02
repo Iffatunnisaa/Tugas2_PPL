@@ -80,3 +80,69 @@ function deleteItem(index) {
         console.log('\n❌ Item tidak ditemukan!\n');
     }
 }
+// Interface CLI
+const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout
+});
+
+function showMenu() {
+    console.log('\n========================================');
+    console.log('⿡  Lihat daftar item');
+    console.log('⿢  Tambah item');
+    console.log('⿣  Lihat detail item');
+    console.log('⿤  Update item');
+    console.log('⿥  Hapus item');
+    console.log('⿦  Keluar');
+    console.log('========================================');
+    rl.question('👉 Pilih aksi: ', (answer) => {
+        if (answer === '1') {
+            listItems();
+            showMenu();
+        } else if (answer === '2') {
+            rl.question('📖 Masukkan judul buku: ', (name) => {
+                rl.question('🎭 Masukkan genre: ', (genre) => {
+                    rl.question('👤 Masukkan nama pengarang : ', (year) => {
+                        addItem(name, genre, year);
+                        showMenu();
+                    });
+                });
+            });
+        } else if (answer === '3') {
+            rl.question('🔍 Masukkan nomor item: ', (num) => {
+                viewItem(parseInt(num) - 1);
+                showMenu();
+            });
+
+        } else if (answer === '4') {
+            rl.question('✏  Masukkan nomor item yang akan diupdate: ', (num) => {
+                rl.question('📖 Masukkan judul baru: ', (newName) => {
+                    rl.question('🎭 Masukkan genre baru: ', (newGenre) => {
+                        rl.question('👤 Masukkan nama pengarang baru: ', (newYear) => {
+                            updateItem(parseInt(num) - 1, newName, newGenre, newYear);
+                            showMenu();
+                        });
+                    });
+                });
+            });
+        } else if (answer === '5') {
+            rl.question('🗑  Masukkan nomor item yang akan dihapus: ', (num) => {
+                deleteItem(parseInt(num) - 1);
+                showMenu();
+            });
+        } else if (answer === '6') {
+            console.log('\n👋 Terima Kasih Telah Menggunakan Database Zein Book!\n');
+            rl.close();
+        } else {
+            console.log('\n❌ Pilihan tidak valid!\n');
+            showMenu();
+        }
+    });
+}
+
+// Tampilan awal hanya muncul sekali
+console.log('\n==================================================');
+console.log('    🎉 SELAMAT DATANG DI DATABASE ZEIN BOOK 🎉');
+console.log('==================================================');
+
+showMenu();
