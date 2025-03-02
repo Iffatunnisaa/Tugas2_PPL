@@ -42,3 +42,37 @@ function addItem(name, genre, year) {
     saveData(data);
     console.log('\n✅ Item berhasil ditambahkan!\n');
 }
+
+// Interface CLI
+const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout
+});
+
+function showMenu() {
+    console.log('\n========================================');
+    console.log('⿡  Lihat daftar item');
+    console.log('⿢  Tambah item');
+    console.log('⿣  Lihat detail item');
+    console.log('⿤  Update item');
+    console.log('⿥  Hapus item');
+    console.log('⿦  Keluar');
+    console.log('========================================');
+    rl.question('👉 Pilih aksi: ', (answer) => {
+        if (answer === '1') {
+            listItems();
+            showMenu();
+        } else if (answer === '2') {
+            rl.question('📖 Masukkan judul buku: ', (name) => {
+                rl.question('🎭 Masukkan genre: ', (genre) => {
+                    rl.question('👤 Masukkan nama pengarang : ', (year) => {
+                        addItem(name, genre, year);
+                        showMenu();
+                    });
+                });
+            });
+        } else if (answer === '3') {
+            rl.question('🔍 Masukkan nomor item: ', (num) => {
+                viewItem(parseInt(num) - 1);
+                showMenu();
+            });
